@@ -1,15 +1,18 @@
-    
+subreddits=["design_critiques","design","crappydesign","userexperience","webdev","css","jquery","javascript","php","wordpress","webhosting","talesfromdesigners","webmarketing","dotcom","somebodymakethis"];
+
+  
+
 // design_critiques
 $.getJSON("http://www.reddit.com/r/design_critiques.json?",function foo(result) {
     $.each(result.data.children.slice(0, 5),
       function (i, post) {
 
         var linkto = post.data.url
-        $("#design_critiques").append( '<h4>'+post.data.title +'</h4>' );
-        // $("#crappydesign_critiques").append( '<br>' + post.data.url + '<br>');
+        $("#design_critiques").append( '<h4>'+post.data.title +'</h4>' + '<br>' );
+        // $("#design_critiques").append( '<a href='+post.data.url+'>' +'</a>');
         // $("#crappydesign_critiques").append( '<br>' + post.data.permalink );
         
-    
+        
 
 
         function convertToLinks(text) {
@@ -39,6 +42,10 @@ $.getJSON("http://www.reddit.com/r/design_critiques.json?",function foo(result) 
     )
   }
 ); 
+
+
+
+
 
 // /r/design
 $.getJSON("http://www.reddit.com/r/design.json?",function foo(result) {
@@ -80,6 +87,8 @@ $.getJSON("http://www.reddit.com/r/design.json?",function foo(result) {
     )
   }
 ); 
+
+
 
 // /r/crappydesign
 $.getJSON("http://www.reddit.com/r/crappydesign.json?",function foo(result) {
@@ -622,4 +631,4 @@ $.getJSON("http://www.reddit.com/r/somebodymakethis.json?",function foo(result) 
 
     )
   }
-);           
+);      
