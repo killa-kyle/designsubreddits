@@ -1,40 +1,30 @@
-subreddits=["design_critiques","design","crappydesign","userexperience","webdev","css","jquery","javascript","php","wordpress","webhosting","talesfromdesigners","webmarketing","dotcom","somebodymakethis"];
-
-  
-
+$(document).ready(function(){
 // design_critiques
 $.getJSON("http://www.reddit.com/r/design_critiques.json?",function foo(result) {
     $.each(result.data.children.slice(0, 5),
       function (i, post) {
 
-        var linkto = post.data.url
-        $("#design_critiques").append( '<h4>'+post.data.title +'</h4>' + '<br>' );
-        // $("#design_critiques").append( '<a href='+post.data.url+'>' +'</a>');
-        // $("#crappydesign_critiques").append( '<br>' + post.data.permalink );
+        var linkto = post.data.url;
+        //post title
+        $("#design_critiques").append( '<h4>'+post.data.title +'</h4>' );
         
-        
-
-
+        //convert url to link
         function convertToLinks(text) {
-        var replaceText, replacePattern1;
-         
-        //URLs starting with http://, https://
-        replacePattern1 = /(\b(https?):\/\/[-A-Z0-9+&amp;@#\/%?=~_|!:,.;]*[-A-Z0-9+&amp;@#\/%=~_|])/ig;
-        replacedText = text.replace(replacePattern1, '<a class="colored-link-1" title="$1" href="$1" target="_blank">$1</a>');
-         
-        //URLs starting with "www."
-        replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
-        replacedText = replacedText.replace(replacePattern2, '$1<a class="colored-link-1" href="http://$2" target="_blank">$2</a>');
-         
-        //returns the text result
-         
-        return replacedText;
-
-        console.log(replacedText);
+            var replaceText, replacePattern1;
+             
+            //URLs starting with http://, https://
+            replacePattern1 = /(\b(https?):\/\/[-A-Z0-9+&amp;@#\/%?=~_|!:,.;]*[-A-Z0-9+&amp;@#\/%=~_|])/ig;
+            replacedText = text.replace(replacePattern1, '<a class="colored-link-1" title="$1" href="$1" target="_blank">$1</a>');
+             
+            //URLs starting with "www."
+            replacePattern2 = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+            replacedText = replacedText.replace(replacePattern2, '$1<a class="colored-link-1" href="http://$2" target="_blank">$2</a>');
+             
+            //returns the text result
+             
+            return replacedText;
         }
         linkto = convertToLinks(linkto);
-        console.log(linkto);
-
         $("#design_critiques").append( '<br>' + linkto + '<br>');
         $("#design_critiques").append( '<hr>' );
       }
@@ -44,6 +34,11 @@ $.getJSON("http://www.reddit.com/r/design_critiques.json?",function foo(result) 
 ); 
 
 
+        //scroll to top
+        $('.two').bind('click',function(){
+            theOffset = $(this).offset();
+                 $('body,html').animate({ scrollTop: theOffset.top - 0 });
+        });
 
 
 
@@ -88,8 +83,25 @@ $.getJSON("http://www.reddit.com/r/design.json?",function foo(result) {
   }
 ); 
 
+        //scroll to top
+        $('.three').bind('click',function(){
+            theOffset = $(this).offset();
+                 $('body,html').animate({ scrollTop: theOffset.top - 0 });
+        });
 
-
+        //scroll to top function
+    //     $('#design_scroll').bind('click',function(){
+    //         if ($('#collapseTwo').hasClass('collapse')){
+    //         theOffset = $(this).offset();
+    //              $('body,html').animate({ scrollTop: $('#design_scroll').offset().top
+    // }, 400);
+    //          }
+    //     });
+        
+        $('#design_scroll').bind('click',function(){
+            
+            $("html, body").scrollTo('#collapseTwo',{duration:'slow', offsetTop : '50'});
+        });
 // /r/crappydesign
 $.getJSON("http://www.reddit.com/r/crappydesign.json?",function foo(result) {
     $.each(result.data.children.slice(0, 5),
@@ -130,7 +142,11 @@ $.getJSON("http://www.reddit.com/r/crappydesign.json?",function foo(result) {
     )
   }
 ); 
-
+        //scroll to top
+        $('.four').bind('click',function(){
+            theOffset = $(this).offset();
+                 $('body,html').animate({ scrollTop: theOffset.top - 0 });
+        });
 
 // /r/userexperience
 $.getJSON("http://www.reddit.com/r/userexperience.json?",function foo(result) {
@@ -172,6 +188,12 @@ $.getJSON("http://www.reddit.com/r/userexperience.json?",function foo(result) {
     )
   }
 );  
+
+        //scroll to top
+        $('.five').bind('click',function(){
+            theOffset = $(this).offset();
+                 $('body,html').animate({ scrollTop: theOffset.top - 0 });
+        });
 
 // /r/webdev
 $.getJSON("http://www.reddit.com/r/webdev.json?",function foo(result) {
@@ -631,4 +653,7 @@ $.getJSON("http://www.reddit.com/r/somebodymakethis.json?",function foo(result) 
 
     )
   }
-);      
+); 
+
+
+});     
